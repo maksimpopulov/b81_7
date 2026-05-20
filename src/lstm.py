@@ -28,7 +28,6 @@ for i in range(0, len(words) - max_sequence_len, step):
     sequences.append(words[i:i+max_sequence_len])
     next_words.append(words[i+max_sequence_len])
 
-# One-hot кодирование
 X = np.zeros((len(sequences), max_sequence_len, vocab_size), dtype=bool)
 y = np.zeros((len(sequences), vocab_size), dtype=bool)
 
@@ -62,7 +61,6 @@ def generate_text(seed_words, length, temperature):
     if isinstance(seed_words, str):
         seed_words = re.findall(r'[а-яё\-]+', seed_words.lower())
     
-    # обрезаем или дополняем до max_sequence_len
     if len(seed_words) > max_sequence_len:
         seed_words = seed_words[-max_sequence_len:]
     elif len(seed_words) < max_sequence_len:
